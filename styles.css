@@ -1,18 +1,11 @@
 /* =============================================
-   IMPORTAR TIPOGRAFÍAS DESDE GOOGLE FONTS
-   Roboto Slab → h1 y h2
-   Lato → párrafos y texto general
-   ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
-
-/* =============================================
    BODY — base general
+   Las fuentes se cargan desde el <head> del HTML
    ============================================= */
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  font-style: normal;
   font-size: 18px;
   line-height: 1.7;
   color: #3a3b38;
@@ -33,7 +26,7 @@ header, nav, main, footer {
 
 
 /* =============================================
-   H1 — título principal
+   H1 — título principal con Roboto Slab
    ============================================= */
 h1 {
   font-family: "Roboto Slab", serif;
@@ -48,7 +41,7 @@ h1 {
 
 
 /* =============================================
-   H2 — subtítulo
+   H2 — subtítulo con Roboto Slab
    ============================================= */
 h2 {
   font-family: "Roboto Slab", serif;
@@ -63,11 +56,12 @@ h2 {
 
 
 /* =============================================
-   P — párrafos
+   P — párrafos con Lato regular
    ============================================= */
 p {
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  font-style: normal;
   font-size: 1rem;
   color: #3a3b38;
   margin-bottom: 20px;
@@ -89,6 +83,7 @@ nav a {
   margin-right: 24px;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+  font-style: normal;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -102,7 +97,6 @@ a {
   color: #3a3b38;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.15s;
 }
 
 a:visited {
@@ -130,24 +124,26 @@ img {
   margin: 28px 0 8px 0;
 }
 
-/* Texto de atribución de imagen */
+/* Texto de atribución de imagen o video */
 .atribucion {
   font-family: "Lato", sans-serif;
   font-weight: 300;
+  font-style: normal;
   font-size: 0.78rem;
   color: #aaaaaa;
   margin-top: 0;
   margin-bottom: 32px;
+  max-width: 65ch;
 }
 
 
 /* =============================================
-   VIDEO RESPONSIVE (iframe YouTube)
-   Usar dentro de un div class="video-wrapper"
+   VIDEO RESPONSIVE
+   Envolvé el iframe en: <div class="video-wrapper">
    ============================================= */
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* proporción 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   margin: 28px 0;
@@ -174,10 +170,13 @@ img {
 }
 
 .destacado p {
-  margin: 0;
-  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
   font-style: italic;
+  font-size: 1rem;
   color: #3a3b38;
+  margin: 0;
+  max-width: 100%;
 }
 
 
@@ -191,6 +190,9 @@ footer {
 }
 
 footer p {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
   font-size: 0.82rem;
   color: #aaaaaa;
 }
