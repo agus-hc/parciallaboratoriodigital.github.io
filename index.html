@@ -1,138 +1,1113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agustina Hernández Correa — Diseñadora Gráfica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agustina Hernández Correa — Diseñadora Gráfica</title>
+  <meta name="description" content="Portfolio y blog académico de Agustina Hernández Correa, diseñadora gráfica especializada en diseño editorial, UX/UI, branding y tipografía." />
 
-    <!-- Hoja de estilos externa -->
-    <link rel="stylesheet" href="styles.css">
+  <!-- Roboto Slab -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <!-- DM Mono para body/etiquetas -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
-    <!-- Tipografía Roboto Slab para títulos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────────── */
+    :root {
+      --white:   #ffffff;
+      --dark:    #3a3b38;
+      --accent:  #fd5002;
+      --gray-1:  #f4f4f2;
+      --gray-2:  #e0e0dc;
+      --gray-3:  #9a9a95;
+      --sidebar-w: 260px;
+      --gap: 48px;
+      --ff-display: 'Roboto Slab', Georgia, serif;
+      --ff-body:    'DM Mono', 'Courier New', monospace;
+    }
 
-    <!-- Tipografía Lato para párrafos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    /* ─── RESET ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────────────── */
+    body { cursor: none; }
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform .12s ease, width .2s ease, height .2s ease, background .2s ease;
+      mix-blend-mode: multiply;
+    }
+    body:has(a:hover) #cursor,
+    body:has(button:hover) #cursor {
+      width: 28px; height: 28px;
+      background: var(--accent);
+      opacity: .5;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────────── */
+    .site-wrapper {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+    }
+
+    /* ─── SIDEBAR ────────────────────────────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 52px 36px 40px;
+      border-right: 1px solid var(--gray-2);
+      background: var(--white);
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    /* decorative vertical rule */
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -1px;
+      width: 3px; height: 0;
+      background: var(--accent);
+      animation: lineGrow 1.2s cubic-bezier(.77,0,.18,1) .4s forwards;
+    }
+    @keyframes lineGrow {
+      to { height: 100%; }
+    }
+
+    .sidebar__logo {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp .6s ease .2s forwards;
+    }
+
+    .sidebar__name {
+      font-family: var(--ff-display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 1.25;
+      color: var(--dark);
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: fadeUp .6s ease .3s forwards;
+    }
+    .sidebar__name em {
+      display: block;
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .sidebar__role {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp .6s ease .4s forwards;
+    }
+
+    /* nav */
+    .sidebar__nav {
+      flex: 1;
+      opacity: 0;
+      animation: fadeUp .6s ease .5s forwards;
+    }
+    .sidebar__nav li + li { margin-top: 4px; }
+    .sidebar__nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      padding: 8px 0;
+      transition: color .2s ease;
+      position: relative;
+    }
+    .sidebar__nav a::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width .25s ease;
+      flex-shrink: 0;
+    }
+    .sidebar__nav a:hover,
+    .sidebar__nav a.active {
+      color: var(--dark);
+    }
+    .sidebar__nav a:hover::before,
+    .sidebar__nav a.active::before {
+      width: 20px;
+    }
+    .sidebar__nav a.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* bottom info */
+    .sidebar__bottom {
+      opacity: 0;
+      animation: fadeUp .6s ease .7s forwards;
+    }
+    .sidebar__location {
+      font-size: .68rem;
+      color: var(--gray-3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .sidebar__social {
+      display: flex;
+      gap: 14px;
+    }
+    .sidebar__social a {
+      font-size: .68rem;
+      color: var(--gray-3);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    .sidebar__social a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ─── MAIN CONTENT ───────────────────────────────────────────────── */
+    .main {
+      padding: 52px var(--gap) 80px calc(var(--gap) + 8px);
+      max-width: 960px;
+    }
+
+    /* section spacing */
+    section { margin-bottom: 96px; }
+    section:last-child { margin-bottom: 0; }
+
+    /* ─── SECTION LABELS ─────────────────────────────────────────────── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────── */
+    #hero {
+      padding-top: 24px;
+      margin-bottom: 108px;
+    }
+    .hero__eyebrow {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp .6s ease .4s forwards;
+    }
+    .hero__headline {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.06;
+      color: var(--dark);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp .7s ease .5s forwards;
+    }
+    .hero__headline .accent { color: var(--accent); }
+    .hero__headline .thin { font-weight: 200; }
+    .hero__desc {
+      font-size: .88rem;
+      color: var(--gray-3);
+      max-width: 520px;
+      line-height: 1.9;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp .6s ease .65s forwards;
+    }
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .74rem;
+      font-family: var(--ff-body);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--dark);
+      padding: 14px 28px;
+      border: none;
+      cursor: none;
+      transition: background .2s ease, gap .2s ease;
+      opacity: 0;
+      animation: fadeUp .6s ease .8s forwards;
+    }
+    .hero__cta:hover { background: var(--accent); gap: 18px; }
+    .hero__cta .arrow { font-size: 1rem; }
+
+    /* hero number decoration */
+    .hero__number {
+      position: absolute;
+      top: 32px; right: 0;
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: 18vw;
+      color: var(--gray-1);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+      overflow: hidden;
+    }
+    #hero { position: relative; }
+
+    /* ─── ABOUT ──────────────────────────────────────────────────────── */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 64px;
+      align-items: start;
+    }
+    .about__text p {
+      font-size: .875rem;
+      color: var(--dark);
+      line-height: 1.95;
+      margin-bottom: 20px;
+    }
+    .about__text p:last-child { margin-bottom: 0; }
+    .about__text strong { font-weight: 500; color: var(--accent); }
+
+    .about__stats {
+      display: grid;
+      gap: 28px;
+    }
+    .stat {
+      border-top: 1px solid var(--gray-2);
+      padding-top: 20px;
+    }
+    .stat__number {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat__number span { color: var(--accent); }
+    .stat__label {
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+
+    /* ─── DISCIPLINES TAG CLOUD ──────────────────────────────────────── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .tag {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border: 1px solid var(--gray-2);
+      color: var(--gray-3);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(253,80,2,.04);
+    }
+    .tag.featured {
+      border-color: var(--dark);
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    /* ─── WORKS / PORTFOLIO ──────────────────────────────────────────── */
+    .works__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .work-card {
+      position: relative;
+      background: var(--gray-1);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: none;
+    }
+    .work-card:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/7;
+    }
+    .work-card__bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 8rem);
+      color: var(--gray-2);
+      transition: transform .5s cubic-bezier(.4,0,.2,1), color .3s;
+      user-select: none;
+    }
+    .work-card:hover .work-card__bg {
+      transform: scale(1.07);
+      color: var(--white);
+    }
+    .work-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--dark);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .work-card:hover .work-card__overlay { opacity: .88; }
+
+    .work-card__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .work-card:hover .work-card__content { opacity: 1; transform: translateY(0); }
+    .work-card__cat {
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .work-card__title {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .work-card__link {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* accent strip on first card */
+    .work-card:first-child::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--accent);
+    }
+
+    /* ─── BLOG / NOTAS ───────────────────────────────────────────────── */
+    .blog__list {
+      display: grid;
+      gap: 0;
+    }
+    .blog-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 28px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--gray-2);
+      transition: background .2s;
+    }
+    .blog-item:first-child { border-top: 1px solid var(--gray-2); }
+    .blog-item:hover { padding-left: 12px; }
+
+    .blog-item__num {
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gray-2);
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .blog-item__body {}
+    .blog-item__cat {
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .blog-item__title {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+      transition: color .2s;
+    }
+    .blog-item:hover .blog-item__title { color: var(--accent); }
+    .blog-item__excerpt {
+      font-size: .78rem;
+      color: var(--gray-3);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+    .blog-item__date {
+      font-size: .66rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      white-space: nowrap;
+      padding-top: 6px;
+    }
+
+    /* ─── REFERENTES ─────────────────────────────────────────────────── */
+    .ref__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .ref-card {
+      padding: 28px 24px;
+      background: var(--gray-1);
+      transition: background .2s;
+    }
+    .ref-card:hover { background: var(--dark); }
+    .ref-card__initial {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--gray-2);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color .2s;
+    }
+    .ref-card:hover .ref-card__initial { color: var(--accent); }
+    .ref-card__name {
+      font-family: var(--ff-display);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      transition: color .2s;
+    }
+    .ref-card:hover .ref-card__name { color: var(--white); }
+    .ref-card__desc {
+      font-size: .7rem;
+      color: var(--gray-3);
+      line-height: 1.65;
+      transition: color .2s;
+    }
+    .ref-card:hover .ref-card__desc { color: var(--gray-2); }
+
+    /* ─── CONTACT ────────────────────────────────────────────────────── */
+    .contact__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact__headline {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .contact__headline .accent { color: var(--accent); }
+    .contact__sub {
+      font-size: .82rem;
+      color: var(--gray-3);
+      line-height: 1.85;
+      margin-bottom: 36px;
+      max-width: 320px;
+    }
+    .contact__email {
+      font-family: var(--ff-display);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--dark);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 3px;
+      transition: color .2s;
+    }
+    .contact__email:hover { color: var(--accent); }
+
+    .contact__form { display: grid; gap: 20px; }
+    .form-field { display: grid; gap: 6px; }
+    .form-field label {
+      font-size: .64rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+    .form-field input,
+    .form-field textarea {
+      font-family: var(--ff-body);
+      font-size: .82rem;
+      color: var(--dark);
+      background: var(--gray-1);
+      border: 1px solid var(--gray-2);
+      border-bottom: 2px solid var(--gray-2);
+      padding: 12px 14px;
+      width: 100%;
+      resize: vertical;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--accent);
+      background: var(--white);
+    }
+    .form-field textarea { min-height: 110px; }
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--ff-body);
+      font-size: .74rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--dark);
+      border: none;
+      padding: 14px 28px;
+      cursor: none;
+      transition: background .2s ease, gap .2s ease;
+      width: fit-content;
+    }
+    .form-submit:hover { background: var(--accent); gap: 18px; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--gray-2);
+      padding: 28px var(--gap) 28px calc(var(--gap) + 8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .66rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+    footer .footer__brand {
+      font-family: var(--ff-display);
+      font-weight: 700;
+      color: var(--dark);
+    }
+    footer .footer__brand span { color: var(--accent); }
+
+    /* ─── DIVIDER ────────────────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gray-2);
+      margin-bottom: 40px;
+    }
+
+    /* ─── SCROLL ANIMATIONS ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      :root { --sidebar-w: 220px; }
+    }
+
+    @media (max-width: 720px) {
+      body { cursor: auto; }
+      #cursor { display: none; }
+
+      .site-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 24px;
+        border-right: none;
+        border-bottom: 1px solid var(--gray-2);
+      }
+      .sidebar::after { display: none; }
+      .sidebar__name { font-size: 1.05rem; margin-bottom: 0; }
+      .sidebar__role { margin-bottom: 0; }
+      .sidebar__logo { margin-bottom: 0; }
+      .sidebar__nav {
+        width: 100%;
+        display: flex; gap: 0;
+      }
+      .sidebar__nav li + li { margin-top: 0; }
+      .sidebar__nav a { padding: 6px 12px 6px 0; }
+      .sidebar__bottom { width: 100%; }
+      .sidebar__location { display: none; }
+
+      .main {
+        padding: 36px 24px 60px;
+      }
+
+      .about__grid,
+      .contact__inner { grid-template-columns: 1fr; gap: 36px; }
+      .ref__grid { grid-template-columns: repeat(2, 1fr); }
+      .works__grid { grid-template-columns: 1fr; }
+      .work-card:first-child { grid-column: span 1; aspect-ratio: 16/9; }
+
+      .blog-item {
+        grid-template-columns: 48px 1fr;
+      }
+      .blog-item__date { display: none; }
+
+      .hero__number { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ENCABEZADO DEL SITIO -->
-    <header>
-        <!-- Nombre como título principal -->
-        <h1>Agustina Hernández Correa</h1>
+<!-- Custom cursor -->
+<div id="cursor" role="presentation" aria-hidden="true"></div>
 
-        <!-- Subtítulo con rol profesional -->
-        <p>Diseñadora Gráfica · UPC Córdoba</p>
-    </header>
+<!-- ───────────────── LAYOUT ─────────────────────────────────────────── -->
+<div class="site-wrapper">
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <nav>
-        <!-- Enlace a la página de inicio -->
-        <a href="index.html">Inicio</a>
+  <!-- ── SIDEBAR ──────────────────────────────────────────────────── -->
+  <aside class="sidebar" role="complementary" aria-label="Navegación lateral">
 
-        <!-- Enlace a la segunda página -->
-        <a href="segundapagina.html">Audiovisual</a>
+    <p class="sidebar__logo">Agu&nbsp;/&nbsp;Portfolio</p>
 
-        <!-- Enlace externo al blog personal -->
-        <a href="https://agudisena.wordpress.com/" target="_blank">Blog</a>
+    <h2 class="sidebar__name">
+      Agustina<br>
+      <em>Hernández</em>
+    </h2>
+    <p class="sidebar__role">Diseñadora Gráfica</p>
+
+    <nav class="sidebar__nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#hero"      class="active">Inicio</a></li>
+        <li><a href="#about"              >Sobre mí</a></li>
+        <li><a href="#works"              >Trabajos</a></li>
+        <li><a href="#blog"               >Blog</a></li>
+        <li><a href="#referentes"         >Referentes</a></li>
+        <li><a href="#contact"            >Contacto</a></li>
+      </ul>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
+    <div class="sidebar__bottom">
+      <p class="sidebar__location">Córdoba, Argentina</p>
+      <div class="sidebar__social">
+        <a href="#" aria-label="Behance">Be.</a>
+        <a href="#" aria-label="LinkedIn">Li.</a>
+        <a href="#" aria-label="Instagram">Ig.</a>
+      </div>
+    </div>
 
-        <!-- SECCIÓN: PRESENTACIÓN PERSONAL -->
-        <section>
-            <h2>Sobre mí</h2>
+  </aside>
 
-            <!-- Párrafo de presentación -->
-            <p>
-                Soy diseñadora gráfica egresada de la Tecnicatura Universitaria en Diseño
-                Gráfico de la Universidad Provincial de Córdoba (UPC). Actualmente curso
-                la Licenciatura en Diseño en la misma institución, en el marco del ciclo
-                de complementación curricular (CCC).
+  <!-- ── MAIN ─────────────────────────────────────────────────────── -->
+  <main class="main" id="main-content">
+
+    <!-- HERO -->
+    <section id="hero" aria-labelledby="hero-heading">
+      <p class="hero__eyebrow">Diseño Editorial · UX/UI · Tipografía</p>
+      <h1 class="hero__headline" id="hero-heading">
+        <span class="thin">Diseño</span><br>
+        que <span class="accent">piensa</span><br>
+        <span class="thin">y comunica.</span>
+      </h1>
+      <p class="hero__desc">
+        Egresada de la UPC, estudiante de la Licenciatura en Diseño. 
+        Creo sistemas visuales que articulan investigación, forma y sentido — 
+        desde la escala tipográfica hasta la identidad de marca.
+      </p>
+      <a href="#works" class="hero__cta">
+        Ver proyectos <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <div class="hero__number" aria-hidden="true">AG</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-heading">
+      <p class="section-label">Sobre mí</p>
+      <div class="about__grid reveal">
+        <div class="about__text">
+          <h2 id="about-heading" style="font-family:var(--ff-display);font-size:1.7rem;font-weight:700;line-height:1.2;margin-bottom:24px;">
+            Diseño comprometido con<br>el problema real.
+          </h2>
+          <p>
+            Me gradué como Diseñadora Gráfica en la <strong>Universidad Provincial de Córdoba (UPC)</strong> 
+            y actualmente curso la Licenciatura en Diseño. Mi práctica se orienta hacia el diseño 
+            con propósito: donde la forma es inseparable del mensaje.
+          </p>
+          <p>
+            Trabajo en la intersección entre <strong>diseño editorial</strong>, tipografía y UX/UI, 
+            con especial interés en la investigación proyectual y el diseño social. Cada proyecto 
+            es una oportunidad para construir lenguajes visuales que perduren.
+          </p>
+          <p>
+            Creo en el trabajo minucioso, en la curiosidad como método y en el diseño 
+            como disciplina de pensamiento crítico.
+          </p>
+
+          <div class="tags">
+            <span class="tag featured">Diseño Editorial</span>
+            <span class="tag featured">UX/UI</span>
+            <span class="tag">Tipografía</span>
+            <span class="tag">Branding</span>
+            <span class="tag">Investigación</span>
+            <span class="tag">Diseño Social</span>
+            <span class="tag">Identidad Visual</span>
+          </div>
+        </div>
+
+        <div class="about__stats">
+          <div class="stat">
+            <p class="stat__number">UPC<span>.</span></p>
+            <p class="stat__label">Formación de base</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number">6<span>+</span></p>
+            <p class="stat__label">Disciplinas de práctica</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number">∞<span>.</span></p>
+            <p class="stat__label">Curiosidad proyectual</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number">Cba<span>.</span></p>
+            <p class="stat__label">Argentina · base de trabajo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKS -->
+    <section id="works" aria-labelledby="works-heading">
+      <p class="section-label">Proyectos seleccionados</p>
+      <h2 id="works-heading" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:32px;" class="reveal">
+        Trabajo reciente
+      </h2>
+      <div class="works__grid reveal">
+
+        <article class="work-card">
+          <div class="work-card__bg" aria-hidden="true">01</div>
+          <div class="work-card__overlay" aria-hidden="true"></div>
+          <div class="work-card__content">
+            <p class="work-card__cat">Diseño Editorial</p>
+            <h3 class="work-card__title">Sistema de publicaciones<br>para organización cultural</h3>
+            <span class="work-card__link">Ver proyecto</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-card__bg" aria-hidden="true">02</div>
+          <div class="work-card__overlay" aria-hidden="true"></div>
+          <div class="work-card__content">
+            <p class="work-card__cat">Identidad Visual</p>
+            <h3 class="work-card__title">Branding editorial<br>para sello independiente</h3>
+            <span class="work-card__link">Ver proyecto</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-card__bg" aria-hidden="true">03</div>
+          <div class="work-card__overlay" aria-hidden="true"></div>
+          <div class="work-card__content">
+            <p class="work-card__cat">UX/UI</p>
+            <h3 class="work-card__title">Rediseño de experiencia<br>para plataforma educativa</h3>
+            <span class="work-card__link">Ver proyecto</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-card__bg" aria-hidden="true">04</div>
+          <div class="work-card__overlay" aria-hidden="true"></div>
+          <div class="work-card__content">
+            <p class="work-card__cat">Diseño Social</p>
+            <h3 class="work-card__title">Campaña de comunicación<br>para organización social</h3>
+            <span class="work-card__link">Ver proyecto</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" aria-labelledby="blog-heading">
+      <p class="section-label">Notas académicas</p>
+      <h2 id="blog-heading" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:32px;" class="reveal">
+        Investigación &amp; escritura
+      </h2>
+
+      <div class="blog__list reveal" role="list">
+
+        <article class="blog-item" role="listitem">
+          <p class="blog-item__num" aria-hidden="true">01</p>
+          <div class="blog-item__body">
+            <p class="blog-item__cat">Tipografía</p>
+            <h3 class="blog-item__title">La función retórica de la tipografía en el diseño de protesta</h3>
+            <p class="blog-item__excerpt">
+              Una lectura de cómo la elección tipográfica construye autoridad, urgencia 
+              y disidencia en el discurso visual callejero. El caso argentino como objeto de estudio.
             </p>
+          </div>
+          <time class="blog-item__date" datetime="2025-03">Mar. 2025</time>
+        </article>
 
-            <!-- Párrafo sobre enfoque profesional -->
-            <p>
-                Mi práctica profesional se orienta hacia el diseño con impacto social,
-                explorando la comunicación visual como herramienta de transformación
-                cultural y construcción de identidad.
+        <article class="blog-item" role="listitem">
+          <p class="blog-item__num" aria-hidden="true">02</p>
+          <div class="blog-item__body">
+            <p class="blog-item__cat">Diseño Editorial</p>
+            <h3 class="blog-item__title">Rubén Fontana y la construcción de una identidad tipográfica nacional</h3>
+            <p class="blog-item__excerpt">
+              Análisis del proyecto Fenix y su impacto en la consolidación de una 
+              tipografía argentina con raíces culturales propias.
             </p>
-        </section>
+          </div>
+          <time class="blog-item__date" datetime="2025-01">Ene. 2025</time>
+        </article>
 
-        <!-- SECCIÓN: ÁREAS DE INTERÉS -->
-        <section>
-            <h2>Áreas de interés</h2>
-
-            <!-- Párrafo sobre intereses -->
-            <p>
-                Me intereso especialmente por el diseño social, la investigación proyectual,
-                el branding y la construcción de identidades visuales. También trabajo y
-                reflexiono sobre UX/UI, tipografía y diseño editorial como disciplinas
-                que articulan forma, contenido y experiencia del usuario.
+        <article class="blog-item" role="listitem">
+          <p class="blog-item__num" aria-hidden="true">03</p>
+          <div class="blog-item__body">
+            <p class="blog-item__cat">UX / Investigación</p>
+            <h3 class="blog-item__title">Diseño centrado en el usuario en contextos de baja conectividad</h3>
+            <p class="blog-item__excerpt">
+              Reflexiones sobre los límites del paradigma UX hegemónico cuando 
+              el acceso tecnológico no es equitativo. Alternativas metodológicas.
             </p>
+          </div>
+          <time class="blog-item__date" datetime="2024-10">Oct. 2024</time>
+        </article>
 
-            <!-- Bloque destacado con síntesis -->
-            <div class="destacado">
-                <p>
-                    "El diseño no es solo forma. Es una decisión cultural, política y ética
-                    sobre cómo queremos comunicar y habitar el mundo."
-                </p>
-            </div>
-        </section>
-
-        <!-- SECCIÓN: REFERENTES -->
-        <section>
-            <h2>Referentes</h2>
-
-            <!-- Párrafo sobre referentes principales -->
-            <p>
-                Entre los autores y referentes que guían mi mirada sobre el diseño se
-                encuentran <strong>Paula Scher</strong>, por su trabajo en diseño tipográfico
-                y cultural; <strong>Bruno Munari</strong>, por su visión experimental y
-                lúdica del diseño; y <strong>Ronald Shakespear</strong>, referente argentino
-                del diseño de señalética y comunicación pública.
+        <article class="blog-item" role="listitem">
+          <p class="blog-item__num" aria-hidden="true">04</p>
+          <div class="blog-item__body">
+            <p class="blog-item__cat">Teoría del diseño</p>
+            <h3 class="blog-item__title">Bruno Munari: el diseño como método de pensamiento</h3>
+            <p class="blog-item__excerpt">
+              Revisión del método proyectual de Munari y su vigencia en la formación 
+              del diseñador contemporáneo.
             </p>
+          </div>
+          <time class="blog-item__date" datetime="2024-07">Jul. 2024</time>
+        </article>
 
-            <!-- Párrafo sobre referentes adicionales -->
-            <p>
-                También me nutro del pensamiento de <strong>Carl Jung</strong> en relación
-                al simbolismo y los arquetipos como base de la comunicación visual, y de
-                <strong>Rubén Fontana</strong>, maestro argentino de la tipografía y el
-                diseño editorial.
-            </p>
-        </section>
+      </div>
+    </section>
 
-        <!-- IMAGEN DESDE WIKIMEDIA COMMONS -->
-        <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg/960px-Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg"
-            alt="Prunus domestica en flor, Huertas de Olárizu, Vitoria">
+    <!-- REFERENTES -->
+    <section id="referentes" aria-labelledby="ref-heading">
+      <p class="section-label">Referentes</p>
+      <h2 id="ref-heading" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:32px;" class="reveal">
+        Influencias de práctica
+      </h2>
+      <div class="ref__grid reveal">
 
-        <!-- Atribución de la imagen -->
-        <p class="atribucion">
-            Imagen: <em>Prunus domestica</em>, Huertas de Olárizu, Vitoria.
-            Autor: BertoTxo · Fuente:
-            <a href="https://commons.wikimedia.org/wiki/File:Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg" target="_blank">Wikimedia Commons</a>
-            · Licencia: CC BY-SA 3.0
-        </p>
+        <article class="ref-card">
+          <p class="ref-card__initial" aria-hidden="true">PS</p>
+          <h3 class="ref-card__name">Paula Scher</h3>
+          <p class="ref-card__desc">
+            Tipografía audaz como arquitectura visual. La escala y el contraste como herramientas de significado.
+          </p>
+        </article>
 
-        <!-- ENLACE EXTERNO AL BLOG -->
-        <p>
-            Seguí mi proceso de aprendizaje y trabajo en
-            <a href="https://agudisena.wordpress.com/" target="_blank">agudiseña →</a>
-        </p>
+        <article class="ref-card">
+          <p class="ref-card__initial" aria-hidden="true">BM</p>
+          <h3 class="ref-card__name">Bruno Munari</h3>
+          <p class="ref-card__desc">
+            Diseño como juego y rigor simultáneo. El método proyectual como forma de pensar el mundo.
+          </p>
+        </article>
 
-    </main>
+        <article class="ref-card">
+          <p class="ref-card__initial" aria-hidden="true">RS</p>
+          <h3 class="ref-card__name">Ronald Shakespear</h3>
+          <p class="ref-card__desc">
+            Diseño de señalización y espacio público. La comunicación visual al servicio de todos.
+          </p>
+        </article>
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
-        <p>Agustina Hernández Correa · Laboratorio Digital · UPC 2025</p>
-        <a href="http://parciallaboratoriodigital.github.io/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Parcial Laboratorio Digital</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> © 2026 por </font></font><a href="https://agudisena.wordpress.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Agustina Hernández Correa</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> está bajo licencia </font></font><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">CC BY-NC-SA 4.0</font></font></a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
-    </footer>
+        <article class="ref-card">
+          <p class="ref-card__initial" aria-hidden="true">RF</p>
+          <h3 class="ref-card__name">Rubén Fontana</h3>
+          <p class="ref-card__desc">
+            Tipografía argentina con identidad propia. La forma de las letras como patrimonio cultural.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <p class="section-label">Contacto</p>
+      <div class="contact__inner reveal">
+        <div>
+          <h2 class="contact__headline" id="contact-heading">
+            Hablemos de<br>
+            <span class="accent">tu proyecto.</span>
+          </h2>
+          <p class="contact__sub">
+            ¿Tenés un proyecto en mente? ¿Buscás colaborar en diseño editorial, 
+            identidad visual o UX? Me interesa escucharte.
+          </p>
+          <a href="mailto:agu.hernandez@correo.com" class="contact__email">
+            agu.hernandez@correo.com
+          </a>
+        </div>
+
+        <form class="contact__form" novalidate aria-label="Formulario de contacto">
+          <div class="form-field">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Tu nombre completo" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="tu@email.com" />
+          </div>
+          <div class="form-field">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Contame sobre tu proyecto…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Enviar mensaje <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><span class="footer__brand">Agu<span>.</span></span> &nbsp;—&nbsp; Agustina Hernández Correa</p>
+  <p>Córdoba, Argentina &nbsp;·&nbsp; <span id="year"></span></p>
+</footer>
+
+<!-- ─── SCRIPTS ───────────────────────────────────────────────────────── -->
+<script>
+  /* Custom cursor */
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+
+  /* Active nav highlight on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.sidebar__nav a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.sidebar__nav a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
+
+  /* Scroll reveal */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(r => revealObs.observe(r));
+
+  /* Current year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Prevent form default */
+  document.querySelector('.contact__form').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Mensaje enviado ✓';
+    btn.style.background = '#3a3b38';
+    btn.disabled = true;
+  });
+</script>
 
 </body>
 </html>
