@@ -1,1 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre mí — Agustina Hernández Correa</title>
+  <meta name="description" content="Diseñadora gráfica egresada de la UPC. Sobre mí: trayectoria, formación académica, filosofía de diseño y disciplinas de práctica." />
 
+  <!-- Fuentes — idénticas al index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Sistema de diseño compartido -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ─── ESTILOS EXCLUSIVOS DE ESTA PÁGINA ─────────────────────────── */
+
+    /* ── HERO SOBRE MÍ ─────────────────────────────────────────────── */
+    #hero-about {
+      padding-top: 24px;
+      margin-bottom: 108px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-about__breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .66rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gris-3);
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp .5s ease .2s forwards;
+    }
+
+    .hero-about__breadcrumb a {
+      color: var(--gris-3);
+      transition: color var(--transition);
+    }
+
+    .hero-about__breadcrumb a:hover { color: var(--naranja); }
+
+    .hero-about__breadcrumb .sep { color: var(--gris-2); }
+
+    .hero-about__headline {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.06;
+      color: var(--gris);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp .7s ease .35s forwards;
+    }
+
+    .hero-about__headline .line-thin   { font-weight: 200; display: block; }
+    .hero-about__headline .line-accent { color: var(--naranja); display: block; }
+    .hero-about__headline .line-normal { display: block; }
+
+    /* Foto placeholder + datos rápidos */
+    .hero-about__inner {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      align-items: start;
+      opacity: 0;
+      animation: fadeUp .7s ease .5s forwards;
+    }
+
+    .hero-about__photo {
+      position: relative;
+    }
+
+    .photo-frame {
+      width: 200px;
+      height: 260px;
+      background: var(--gris-1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Inicial decorativa en lugar de foto real */
+    .photo-frame__initial {
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: 6rem;
+      color: var(--gris-2);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      transition: color var(--transition);
+    }
+
+    .photo-frame:hover .photo-frame__initial {
+      color: var(--naranja);
+    }
+
+    /* Línea naranja debajo del frame */
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--naranja);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s var(--ease);
+    }
+
+    .photo-frame:hover::after {
+      transform: scaleX(1);
+    }
+
+    .photo-caption {
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gris-3);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* Datos rápidos lado derecho */
+    .hero-about__intro {}
+
+    .intro-text {
+      font-size: .9rem;
+      line-height: 1.95;
+      color: var(--gris);
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+
+    .intro-text strong {
+      font-weight: 500;
+      color: var(--naranja);
+    }
+
+    .quick-data {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      border-top: 1px solid var(--gris-2);
+      padding-top: 28px;
+    }
+
+    .quick-data__item {}
+
+    .quick-data__label {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gris-3);
+      margin-bottom: 5px;
+    }
+
+    .quick-data__value {
+      font-family: var(--ff-display);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--gris);
+      line-height: 1.3;
+    }
+
+    .quick-data__value .accent { color: var(--naranja); }
+
+    /* Número grande decorativo */
+    .hero-about__deco {
+      position: absolute;
+      top: 0; right: -20px;
+      font-family: var(--ff-display);
+      font-weight: 800;
+      font-size: 20vw;
+      color: var(--gris-1);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+    }
+
+
+    /* ── SECCIÓN: MANIFIESTO / FILOSOFÍA ───────────────────────────── */
+    #filosofia { position: relative; }
+
+    .manifiesto {
+      position: relative;
+    }
+
+    .manifiesto__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .manifiesto__text {}
+
+    .manifiesto__heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--gris);
+      margin-bottom: 28px;
+    }
+
+    .manifiesto__heading em {
+      font-style: normal;
+      color: var(--naranja);
+    }
+
+    .manifiesto__body p {
+      font-size: .875rem;
+      line-height: 1.95;
+      color: var(--gris);
+      margin-bottom: 18px;
+    }
+
+    .manifiesto__body p:last-child { margin-bottom: 0; }
+
+    .manifiesto__body strong {
+      font-weight: 500;
+      color: var(--naranja);
+    }
+
+    /* Principios */
+    .principios {
+      display: grid;
+      gap: 20px;
+      padding-top: 8px;
+    }
+
+    .principio {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 20px 0;
+      border-top: 1px solid var(--gris-2);
+    }
+
+    .principio:last-child {
+      border-bottom: 1px solid var(--gris-2);
+    }
+
+    .principio__num {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gris-2);
+      line-height: 1;
+      padding-top: 2px;
+      transition: color var(--transition);
+    }
+
+    .principio:hover .principio__num { color: var(--naranja); }
+
+    .principio__title {
+      font-family: var(--ff-display);
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--gris);
+      margin-bottom: 6px;
+    }
+
+    .principio__desc {
+      font-size: .78rem;
+      color: var(--gris-3);
+      line-height: 1.75;
+    }
+
+
+    /* ── SECCIÓN: TRAYECTORIA / TIMELINE ───────────────────────────── */
+    #trayectoria {}
+
+    .trayectoria__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .trayectoria__col-title {
+      font-family: var(--ff-display);
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--gris);
+      margin-bottom: 32px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--gris-2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trayectoria__col-title .dot {
+      width: 8px; height: 8px;
+      background: var(--naranja);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+
+    /* ── SECCIÓN: COMPETENCIAS ─────────────────────────────────────── */
+    #competencias {}
+
+    .competencias__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .competencias__group-title {
+      font-size: .66rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gris-3);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gris-2);
+    }
+
+
+    /* ── SECCIÓN: LECTURAS / BIBLIOTECA ────────────────────────────── */
+    #lecturas {}
+
+    .lecturas__intro {
+      max-width: 520px;
+      font-size: .875rem;
+      color: var(--gris-3);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .libros__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .libro-card {
+      background: var(--gris-1);
+      padding: 28px 24px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition);
+    }
+
+    .libro-card:hover { background: var(--gris); }
+
+    .libro-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--naranja);
+      transition: height var(--t-slow) var(--ease);
+    }
+
+    .libro-card:hover::before { height: 100%; }
+
+    .libro-card__num {
+      font-family: var(--ff-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gris-2);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color var(--transition);
+    }
+
+    .libro-card:hover .libro-card__num { color: var(--naranja); }
+
+    .libro-card__title {
+      font-family: var(--ff-display);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--gris);
+      line-height: 1.3;
+      margin-bottom: 6px;
+      transition: color var(--transition);
+    }
+
+    .libro-card:hover .libro-card__title { color: var(--blanco); }
+
+    .libro-card__author {
+      font-size: .66rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gris-3);
+      margin-bottom: 14px;
+      transition: color var(--transition);
+    }
+
+    .libro-card:hover .libro-card__author { color: var(--gris-2); }
+
+    .libro-card__note {
+      font-size: .74rem;
+      color: var(--gris-3);
+      line-height: 1.7;
+      font-style: italic;
+      transition: color var(--transition);
+    }
+
+    .libro-card:hover .libro-card__note { color: var(--gris-2); }
+
+
+    /* ── SECCIÓN: EN ESTE MOMENTO ──────────────────────────────────── */
+    #ahora {}
+
+    .ahora__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+    }
+
+    .ahora-card {
+      padding: 28px 24px;
+      background: var(--gris-1);
+      transition: background var(--transition);
+    }
+
+    .ahora-card:first-child {
+      background: var(--gris);
+    }
+
+    .ahora-card__icon {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .ahora-card__label {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      margin-bottom: 8px;
+    }
+
+    .ahora-card:first-child .ahora-card__label {
+      color: var(--naranja);
+    }
+
+    .ahora-card__content {
+      font-family: var(--ff-display);
+      font-size: .94rem;
+      font-weight: 700;
+      color: var(--gris);
+      line-height: 1.3;
+      margin-bottom: 8px;
+      transition: color var(--transition);
+    }
+
+    .ahora-card:first-child .ahora-card__content {
+      color: var(--blanco);
+    }
+
+    .ahora-card:hover .ahora-card__content { color: var(--naranja); }
+    .ahora-card:first-child:hover .ahora-card__content { color: var(--naranja); }
+
+    .ahora-card__sub {
+      font-size: .72rem;
+      color: var(--gris-3);
+      line-height: 1.65;
+    }
+
+    .ahora-card:first-child .ahora-card__sub { color: var(--gris-3); }
+
+
+    /* ── RESPONSIVE ESPECÍFICO ─────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .manifiesto__grid,
+      .trayectoria__grid,
+      .competencias__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-about__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-frame {
+        width: 140px; height: 180px;
+      }
+
+      .quick-data {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .libros__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ahora__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .quick-data { grid-template-columns: repeat(2, 1fr); }
+      .libros__grid { grid-template-columns: 1fr; }
+      .ahora__grid { grid-template-columns: 1fr; }
+      .hero-about__deco { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor personalizado -->
+<div id="cursor" role="presentation" aria-hidden="true"></div>
+
+<div class="site-wrapper">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════════════════ -->
+  <aside class="sidebar" role="complementary" aria-label="Navegación lateral">
+
+    <p class="sidebar__logo">Agu&nbsp;/&nbsp;Portfolio</p>
+
+    <h2 class="sidebar__name">
+      Agustina<br>
+      <em>Hernández</em>
+    </h2>
+    <p class="sidebar__role">Diseñadora Gráfica</p>
+
+    <nav class="sidebar__nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html"           >Inicio</a></li>
+        <li><a href="#hero-about" class="active">Sobre mí</a></li>
+        <li><a href="#filosofia"           >Filosofía</a></li>
+        <li><a href="#trayectoria"         >Trayectoria</a></li>
+        <li><a href="#competencias"        >Competencias</a></li>
+        <li><a href="#lecturas"            >Lecturas</a></li>
+        <li><a href="#ahora"              >Ahora</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <p class="sidebar__location">Córdoba, Argentina</p>
+      <div class="sidebar__social">
+        <a href="#" aria-label="Behance">Be.</a>
+        <a href="#" aria-label="LinkedIn">Li.</a>
+        <a href="#" aria-label="Instagram">Ig.</a>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══ MAIN ═════════════════════════════════════════════════════════ -->
+  <main class="main" id="main-content">
+
+    <!-- ── HERO SOBRE MÍ ─────────────────────────────────────────── -->
+    <section id="hero-about" aria-labelledby="hero-about-heading">
+
+      <div class="hero-about__deco" aria-hidden="true">A</div>
+
+      <nav class="hero-about__breadcrumb" aria-label="Miga de pan">
+        <a href="index.html">Inicio</a>
+        <span class="sep" aria-hidden="true">—</span>
+        <span>Sobre mí</span>
+      </nav>
+
+      <h1 class="hero-about__headline" id="hero-about-heading">
+        <span class="line-thin">Soy</span>
+        <span class="line-accent">Agustina.</span>
+        <span class="line-normal">Diseño con sentido.</span>
+      </h1>
+
+      <div class="hero-about__inner">
+        <!-- Foto / Avatar -->
+        <div class="hero-about__photo">
+          <div class="photo-frame" role="img" aria-label="Retrato de Agustina Hernández Correa">
+            <span class="photo-frame__initial" aria-hidden="true">AGU</span>
+          </div>
+          <p class="photo-caption">Agustina Hernández Correa</p>
+        </div>
+
+        <!-- Intro texto + datos rápidos -->
+        <div class="hero-about__intro">
+          <p class="intro-text">
+            Egresada de la <strong>Universidad Provincial de Córdoba</strong> y actualmente estudiante de 
+            la Licenciatura en Diseño. Me dedico a crear sistemas visuales que articulan 
+            investigación, forma y sentido crítico. 
+            Mi práctica abarca el <strong>diseño editorial</strong>, UX/UI, 
+            tipografía y branding — siempre desde una perspectiva comprometida con el 
+            rol social del diseño.
+          </p>
+
+          <div class="quick-data">
+            <div class="quick-data__item">
+              <p class="quick-data__label">Formación</p>
+              <p class="quick-data__value">UPC<span class="accent">.</span></p>
+            </div>
+            <div class="quick-data__item">
+              <p class="quick-data__label">Ubicación</p>
+              <p class="quick-data__value">Córdoba<span class="accent">,</span> AR</p>
+            </div>
+            <div class="quick-data__item">
+              <p class="quick-data__label">Disponible</p>
+              <p class="quick-data__value">Sí<span class="accent">.</span></p>
+            </div>
+            <div class="quick-data__item">
+              <p class="quick-data__label">Disciplinas</p>
+              <p class="quick-data__value">6<span class="accent">+</span></p>
+            </div>
+            <div class="quick-data__item">
+              <p class="quick-data__label">Énfasis</p>
+              <p class="quick-data__value">Editorial<span class="accent">&</span>UX</p>
+            </div>
+            <div class="quick-data__item">
+              <p class="quick-data__label">Idiomas</p>
+              <p class="quick-data__value">ES <span class="accent">·</span> EN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags disciplinas -->
+      <div class="tags" style="margin-top:40px;opacity:0;animation:fadeUp .6s ease .7s forwards;">
+        <span class="tag featured">Diseño Editorial</span>
+        <span class="tag featured">UX / UI</span>
+        <span class="tag">Tipografía</span>
+        <span class="tag">Branding</span>
+        <span class="tag">Diseño Social</span>
+        <span class="tag">Investigación</span>
+        <span class="tag">Identidad Visual</span>
+        <span class="tag">Señalética</span>
+      </div>
+
+    </section>
+
+
+    <!-- ── FILOSOFÍA / MANIFIESTO ────────────────────────────────── -->
+    <section id="filosofia" aria-labelledby="filosofia-heading">
+      <p class="section-label">Filosofía</p>
+
+      <div class="manifiesto reveal">
+        <div class="manifiesto__grid">
+
+          <div class="manifiesto__text">
+            <h2 class="manifiesto__heading" id="filosofia-heading">
+              El diseño no decora.<br>
+              <em>Argumenta.</em>
+            </h2>
+            <div class="manifiesto__body">
+              <p>
+                Creo que diseñar es, ante todo, un acto de pensamiento. Cada decisión visual — 
+                el peso de una tipografía, la jerarquía de un layout, la tensión entre el blanco y la forma — 
+                es también una posición intelectual.
+              </p>
+              <p>
+                Mi práctica se nutre de la investigación proyectual: antes de trazar cualquier línea, 
+                entiendo el problema. <strong>El diseño que dura es el que comprende 
+                a quien lo va a usar.</strong>
+              </p>
+              <p>
+                Trabajo en la intersección de lo editorial y lo digital, buscando sistemas que 
+                sean coherentes, escalables y profundamente humanos. Me interesa 
+                la <strong>tipografía como arquitectura del pensamiento</strong> y el diseño 
+                social como práctica de ciudadanía.
+              </p>
+            </div>
+          </div>
+
+          <!-- Principios de diseño -->
+          <div class="principios" role="list">
+            <h3 style="font-family:var(--ff-display);font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gris-3);margin-bottom:4px;">
+              Principios de práctica
+            </h3>
+
+            <article class="principio" role="listitem">
+              <span class="principio__num" aria-hidden="true">01</span>
+              <div>
+                <p class="principio__title">Forma con función</p>
+                <p class="principio__desc">La belleza es consecuencia de resolver bien un problema. No decoro: construyo sentido.</p>
+              </div>
+            </article>
+
+            <article class="principio" role="listitem">
+              <span class="principio__num" aria-hidden="true">02</span>
+              <div>
+                <p class="principio__title">Rigor investigativo</p>
+                <p class="principio__desc">Todo proyecto comienza con preguntas. La investigación no es un paso previo: es parte del método.</p>
+              </div>
+            </article>
+
+            <article class="principio" role="listitem">
+              <span class="principio__num" aria-hidden="true">03</span>
+              <div>
+                <p class="principio__title">Diseño como diálogo</p>
+                <p class="principio__desc">Un artefacto visual habla con su contexto, su historia y su usuario. Diseño para esa conversación.</p>
+              </div>
+            </article>
+
+            <article class="principio" role="listitem">
+              <span class="principio__num" aria-hidden="true">04</span>
+              <div>
+                <p class="principio__title">Responsabilidad social</p>
+                <p class="principio__desc">El diseño configura modos de ver el mundo. Esa responsabilidad no se delega.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Cita -->
+      <blockquote class="quote reveal">
+        <p class="quote__text">
+          "El buen diseño es tan poco diseño como sea posible."
+        </p>
+        <footer class="quote__author">
+          Dieter Rams — <span>Principios del buen diseño</span>
+        </footer>
+      </blockquote>
+
+    </section>
+
+
+    <!-- ── TRAYECTORIA ───────────────────────────────────────────── -->
+    <section id="trayectoria" aria-labelledby="trayectoria-heading">
+      <p class="section-label">Trayectoria</p>
+
+      <div class="trayectoria__grid reveal">
+
+        <!-- Formación académica -->
+        <div>
+          <h2 class="trayectoria__col-title" id="trayectoria-heading">
+            <span class="dot" aria-hidden="true"></span>
+            Formación académica
+          </h2>
+
+          <div class="timeline" role="list">
+
+            <article class="timeline-item active" role="listitem">
+              <p class="timeline-item__year">2024 — Actualidad</p>
+              <h3 class="timeline-item__title">Licenciatura en Diseño</h3>
+              <p class="timeline-item__sub">En curso · Córdoba, AR</p>
+              <p class="timeline-item__desc">
+                Profundización en teoría del diseño, investigación proyectual y 
+                pensamiento crítico aplicado a la práctica profesional.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2020 — 2023</p>
+              <h3 class="timeline-item__title">Diseño Gráfico</h3>
+              <p class="timeline-item__sub">Universidad Provincial de Córdoba — UPC</p>
+              <p class="timeline-item__desc">
+                Formación integral en diseño de comunicación visual, tipografía, diseño 
+                editorial, identidad y comunicación digital. Egresada con honores.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2022</p>
+              <h3 class="timeline-item__title">Curso: Tipografía Latinoamericana</h3>
+              <p class="timeline-item__sub">Taller intensivo · Online</p>
+              <p class="timeline-item__desc">
+                Estudio de la tradición tipográfica regional, con énfasis en los aportes 
+                de Rubén Fontana y la escuela argentina.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2021</p>
+              <h3 class="timeline-item__title">Taller de Diseño Editorial Avanzado</h3>
+              <p class="timeline-item__sub">Formación complementaria · Córdoba</p>
+              <p class="timeline-item__desc">
+                Sistemas de grilla, jerarquía visual y producción editorial para 
+                medios impresos y digitales.
+              </p>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Experiencia y proyectos -->
+        <div>
+          <h2 class="trayectoria__col-title">
+            <span class="dot" aria-hidden="true"></span>
+            Experiencia & proyectos
+          </h2>
+
+          <div class="timeline" role="list">
+
+            <article class="timeline-item active" role="listitem">
+              <p class="timeline-item__year">2024 — Actualidad</p>
+              <h3 class="timeline-item__title">Diseñadora Freelance</h3>
+              <p class="timeline-item__sub">Proyectos editoriales, branding y UX/UI</p>
+              <p class="timeline-item__desc">
+                Desarrollo de sistemas de identidad visual, publicaciones editoriales 
+                y experiencias digitales para clientes locales e independientes.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2023</p>
+              <h3 class="timeline-item__title">Proyecto de Graduación</h3>
+              <p class="timeline-item__sub">Sistema editorial · UPC</p>
+              <p class="timeline-item__desc">
+                Sistema de publicaciones para una organización cultural cordobesa. 
+                Diseño editorial, identidad y material comunicacional completo.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2022 — 2023</p>
+              <h3 class="timeline-item__title">Asistente de cátedra</h3>
+              <p class="timeline-item__sub">Taller de Tipografía · UPC</p>
+              <p class="timeline-item__desc">
+                Acompañamiento pedagógico en talleres de diseño tipográfico y 
+                corrección de trabajos prácticos.
+              </p>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <p class="timeline-item__year">2022</p>
+              <h3 class="timeline-item__title">Campaña de comunicación social</h3>
+              <p class="timeline-item__sub">Proyecto académico con ONG local</p>
+              <p class="timeline-item__desc">
+                Diseño de piezas gráficas para campaña de concientización ambiental 
+                en escuelas secundarias de la ciudad.
+              </p>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── COMPETENCIAS ──────────────────────────────────────────── -->
+    <section id="competencias" aria-labelledby="competencias-heading">
+      <p class="section-label">Competencias</p>
+
+      <div class="competencias__grid reveal">
+
+        <!-- Herramientas -->
+        <div>
+          <p class="competencias__group-title">Herramientas digitales</p>
+          <div class="skill-list">
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Adobe InDesign</span>
+                <span class="skill-item__pct">95%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 95%;" data-pct="95"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Adobe Illustrator</span>
+                <span class="skill-item__pct">90%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 90%;" data-pct="90"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Figma</span>
+                <span class="skill-item__pct">88%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 88%;" data-pct="88"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Adobe Photoshop</span>
+                <span class="skill-item__pct">82%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 82%;" data-pct="82"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">HTML / CSS</span>
+                <span class="skill-item__pct">70%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 70%;" data-pct="70"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Disciplinas / Saberes -->
+        <div>
+          <p class="competencias__group-title">Áreas de práctica</p>
+          <div class="skill-list">
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Diseño editorial</span>
+                <span class="skill-item__pct">96%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 96%;" data-pct="96"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Tipografía</span>
+                <span class="skill-item__pct">92%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 92%;" data-pct="92"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Identidad visual</span>
+                <span class="skill-item__pct">88%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 88%;" data-pct="88"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">UX / UI</span>
+                <span class="skill-item__pct">78%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 78%;" data-pct="78"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">Investigación proyectual</span>
+                <span class="skill-item__pct">85%</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--pct: 85%;" data-pct="85"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── LECTURAS / BIBLIOTECA ─────────────────────────────────── -->
+    <section id="lecturas" aria-labelledby="lecturas-heading">
+      <p class="section-label">Biblioteca</p>
+      <h2 id="lecturas-heading" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:16px;" class="reveal">
+        Lecturas que formaron mi mirada
+      </h2>
+      <p class="lecturas__intro reveal">
+        Los libros que marcan la práctica. No bibliografía académica obligatoria, 
+        sino encuentros que cambiaron cómo pienso el diseño.
+      </p>
+
+      <div class="libros__grid reveal">
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">01</p>
+          <h3 class="libro-card__title">Make It Bigger</h3>
+          <p class="libro-card__author">Paula Scher</p>
+          <p class="libro-card__note">
+            La tipografía como gesto político. Scher enseña a usar la escala para decir algo.
+          </p>
+        </article>
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">02</p>
+          <h3 class="libro-card__title">Arte come mestiere</h3>
+          <p class="libro-card__author">Bruno Munari</p>
+          <p class="libro-card__note">
+            El método como horizonte. Diseñar es investigar, explorar y comunicar.
+          </p>
+        </article>
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">03</p>
+          <h3 class="libro-card__title">La forma de las ideas</h3>
+          <p class="libro-card__author">Rubén Fontana</p>
+          <p class="libro-card__note">
+            Tipografía argentina como práctica cultural y afirmación de identidad.
+          </p>
+        </article>
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">04</p>
+          <h3 class="libro-card__title">Thinking with Type</h3>
+          <p class="libro-card__author">Ellen Lupton</p>
+          <p class="libro-card__note">
+            La gramática tipográfica explicada con claridad y precisión casi quirúrgica.
+          </p>
+        </article>
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">05</p>
+          <h3 class="libro-card__title">El universo de las formas</h3>
+          <p class="libro-card__author">Malraux · George</p>
+          <p class="libro-card__note">
+            La forma visual como lenguaje universal. La historia del arte 
+            como historia de la percepción humana.
+          </p>
+        </article>
+
+        <article class="libro-card">
+          <p class="libro-card__num" aria-hidden="true">06</p>
+          <h3 class="libro-card__title">Diseño y comunicación visual</h3>
+          <p class="libro-card__author">Bruno Munari</p>
+          <p class="libro-card__note">
+            Fundamentos del mensaje visual. Cómo la forma comunica antes que el contenido.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ── EN ESTE MOMENTO ───────────────────────────────────────── -->
+    <section id="ahora" aria-labelledby="ahora-heading">
+      <p class="section-label">Now</p>
+      <h2 id="ahora-heading" style="font-family:var(--ff-display);font-size:1.5rem;font-weight:700;margin-bottom:32px;" class="reveal">
+        En este momento
+      </h2>
+
+      <div class="ahora__grid reveal">
+
+        <div class="ahora-card">
+          <div class="ahora-card__icon" aria-hidden="true">📖</div>
+          <p class="ahora-card__label">Estudiando</p>
+          <p class="ahora-card__content">Licenciatura en Diseño</p>
+          <p class="ahora-card__sub">
+            Profundizando en teoría e investigación proyectual. Aprendiendo a formular mejores preguntas.
+          </p>
+        </div>
+
+        <div class="ahora-card">
+          <div class="ahora-card__icon" aria-hidden="true">✏️</div>
+          <p class="ahora-card__label">Trabajando en</p>
+          <p class="ahora-card__content">Sistema editorial para sello independiente</p>
+          <p class="ahora-card__sub">
+            Identidad visual completa + sistema de publicaciones. Grilla, tipografía y color.
+          </p>
+        </div>
+
+        <div class="ahora-card">
+          <div class="ahora-card__icon" aria-hidden="true">📝</div>
+          <p class="ahora-card__label">Escribiendo sobre</p>
+          <p class="ahora-card__content">Tipografía y protesta visual</p>
+          <p class="ahora-card__sub">
+            Investigación sobre la retórica tipográfica en el diseño callejero argentino.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA hacia contacto -->
+      <div style="margin-top:48px;display:flex;gap:16px;flex-wrap:wrap;" class="reveal">
+        <a href="index.html#contact" class="btn">
+          Hablemos <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="index.html#works" class="btn btn--outline">
+          Ver proyectos <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <span class="footer__brand">Agu<span>.</span></span>
+    &nbsp;—&nbsp; Agustina Hernández Correa
+  </p>
+  <nav class="footer__nav" aria-label="Footer">
+    <a href="index.html">Inicio</a>
+    <a href="#filosofia">Filosofía</a>
+    <a href="#trayectoria">Trayectoria</a>
+    <a href="index.html#contact">Contacto</a>
+  </nav>
+  <p id="year-footer"></p>
+</footer>
+
+
+<!-- ── SCRIPTS ─────────────────────────────────────────────────────── -->
+<script>
+  /* ── Cursor personalizado ─────────────────────────────────────── */
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+  }
+
+  /* ── Año en footer ────────────────────────────────────────────── */
+  const yearEl = document.getElementById('year-footer');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ── Nav activa por scroll ────────────────────────────────────── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.sidebar__nav a[href^="#"]');
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(
+          `.sidebar__nav a[href="#${entry.target.id}"]`
+        );
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  /* ── Scroll reveal ────────────────────────────────────────────── */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(r => revealObs.observe(r));
+
+  /* ── Skill bars animadas ──────────────────────────────────────── */
+  const fills = document.querySelectorAll('.skill-item__fill');
+
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const pct = e.target.dataset.pct;
+        e.target.style.width = pct + '%';
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  fills.forEach(f => skillObs.observe(f));
+</script>
+
+</body>
+</html>
