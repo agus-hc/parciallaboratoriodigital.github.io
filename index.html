@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio y blog de Agustina Hernández Correa, diseñadora gráfica. Laboratorio Digital — UPC.">
+  <title>Agu — Laboratorio Digital</title>
 
+  <!-- Google Fonts: Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts: Roboto Slab -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ========================
+         SIDEBAR
+    ========================= -->
+    <aside class="sidebar">
+      <div>
+        <p class="site-title">Agustina<br>Hernández Correa</p>
+        <p class="site-subtitle">Diseñadora Gráfica</p>
+        <div class="sidebar-accent"></div>
+      </div>
+
+      <nav aria-label="Navegación principal">
+        <a href="index.html" class="activo">Inicio</a>
+        <a href="segundapagina.html">Intereses y referencias</a>
+        <a href="https://agudisena.wordpress.com/" target="_blank" rel="noopener">Blog externo</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Tecnicatura en Diseño Gráfico<br>Lic. en Diseño (CCC)<br>UPC — Laboratorio Digital</p>
+      </div>
+    </aside>
+
+    <!-- ========================
+         CONTENIDO PRINCIPAL
+    ========================= -->
+    <main class="main-content">
+
+      <!-- Hero / Presentación -->
+      <section class="section-hero">
+        <h1>Hola, soy Agu.</h1>
+        <h2>Diseño, investigación y conexión con las personas.</h2>
+        <p>
+          Soy diseñadora gráfica, egresada de la Tecnicatura Universitaria en Diseño Gráfico de la UPC
+          y actualmente curso la Licenciatura en Diseño (CCC) en la misma universidad.
+          En este espacio comparto reflexiones, trabajos y aprendizajes de la materia
+          <strong>Laboratorio Digital</strong>.
+        </p>
+        <p>
+          Llegar hasta acá fue un camino largo —y para nada lineal—, pero sin dudas muy enriquecedor.
+          Creo que el diseño me permite aportar a la construcción de un entorno más empático
+          y dejar una huella positiva.
+        </p>
+        <p>
+          Actualmente trabajo en un estudio de arquitectura en el área de diseño,
+          donde también participo en tareas de gestión y desarrollo de procesos.
+          Me fascina viajar, lo artístico, lo artesanal y lo académico cuando el tema me apasiona.
+          Dato curioso: estudio chino mandarín — 大家好 (dà jiā hǎo).
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Diseño Social</span>
+          <span class="tag">Branding</span>
+          <span class="tag">UX / UI</span>
+          <span class="tag">Tipografía</span>
+          <span class="tag">Editorial</span>
+          <span class="tag">Investigación</span>
+        </div>
+      </section>
+
+      <!-- Imagen -->
+      <section class="section-imagen">
+        <h3>Imagen destacada</h3>
+        <figure>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg/960px-Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg"
+            alt="Prunus domestica en flor — Huertas de Olárizu, Vitoria"
+            width="960"
+            height="640"
+            loading="lazy"
+          >
+          <figcaption>
+            <em>Prunus domestica</em> en flor. Huertas de Olárizu, Vitoria.
+            Fuente: <a href="https://commons.wikimedia.org/wiki/File:Vitoria_-_Huertas_de_Ol%C3%A1rizu_-_Prunus_domestica_-BT-_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Video -->
+      <section class="section-video">
+        <h3>Video</h3>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/BqIWJ12sGcs?si=3Zid_TwcO50ci7KE"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- Blog externo -->
+      <section class="section-bloque">
+        <h3>Blog</h3>
+        <p>
+          En mi blog de la materia comparto el proceso de aprendizaje semana a semana.
+          Podés leer reflexiones, avances y trabajos de Laboratorio Digital.
+        </p>
+        <a href="https://agudisena.wordpress.com/" target="_blank" rel="noopener" class="btn-blog">
+          Visitar mi blog
+        </a>
+      </section>
+
+      <!-- Navegación entre páginas -->
+      <nav class="nav-paginas" aria-label="Navegación entre páginas">
+        <a href="segundapagina.html">Intereses y referencias →</a>
+      </nav>
+
+    </main>
+  </div>
+
+  <!-- ========================
+       FOOTER
+  ========================= -->
+  <footer>
+    <p>
+      <a href="http://parciallaboratoriodigital.github.io/">Parcial Laboratorio Digital</a>
+      © 2026 por
+      <a href="https://agudisena.wordpress.com/">Agustina Hernández Correa</a>
+      está bajo licencia
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+      <span class="cc-icons">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Atribución">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="No Comercial">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="Compartir Igual">
+      </span>
+    </p>
+  </footer>
+
+</body>
+</html>
