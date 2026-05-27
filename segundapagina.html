@@ -1,729 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Editorial — Tipografía serif en la era digital. Agudiseña blog de diseño y comunicación visual.">
-  <title>Editorial — Agudiseña</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audiovisual — Agustina Hernández Correa</title>
 
-  <!-- Google Fonts: Roboto Slab -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="styles.css">
 
-  <!-- Google Fonts: Lato -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Tipografía Roboto Slab para títulos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 
-  <!-- Hoja de estilos externa -->
-  <link rel="stylesheet" href="styles.css">
-
-  <style>
-    /* ── Marca ─────────────────────────────────────────── */
-    .site-brand {
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-      text-decoration: none;
-    }
-    .site-brand__name {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--color-text, #2b2b2b);
-      letter-spacing: -0.02em;
-    }
-    .site-brand__dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: #fd5002;
-      margin-bottom: 3px;
-      flex-shrink: 0;
-    }
-
-    /* ── Header ────────────────────────────────────────── */
-    .site-header {
-      padding-block: 1.5rem;
-      border-bottom: 1px solid var(--color-border, #e2ddd8);
-      background-color: var(--color-surface, #ffffff);
-    }
-    .site-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    /* ── Nav ────────────────────────────────────────────── */
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .site-nav a {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--color-muted, #7a7975);
-      transition: color 220ms ease, font-style 220ms ease;
-    }
-    .site-nav a:hover {
-      color: #fd5002;
-      font-style: italic;
-    }
-    .site-nav a.active {
-      color: var(--color-text, #2b2b2b);
-      border-bottom: 2px solid #fd5002;
-      padding-bottom: 2px;
-    }
-
-    /* ── Breadcrumb ────────────────────────────────────── */
-    .breadcrumb {
-      padding-block: 1.5rem;
-      border-bottom: 1px solid var(--color-border, #e2ddd8);
-    }
-    .breadcrumb ol {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .breadcrumb li {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--color-muted, #7a7975);
-      line-height: 1;
-      margin-bottom: 0;
-    }
-    .breadcrumb li + li::before {
-      content: '/';
-      margin-right: 0.5rem;
-      color: var(--color-border, #e2ddd8);
-    }
-    .breadcrumb a {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      color: var(--color-link, #3a3b38);
-      transition: color 220ms ease, font-style 220ms ease;
-    }
-    .breadcrumb a:hover {
-      color: #fd5002;
-      font-style: italic;
-    }
-
-    /* ── Encabezado del artículo ───────────────────────── */
-    .article-header {
-      padding-block: 5rem 3.5rem;
-      max-width: 780px;
-      margin-inline: auto;
-      text-align: center;
-      padding-inline: 1rem;
-    }
-    .article-header__category {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #fd5002;
-      display: block;
-      margin-bottom: 1.5rem;
-    }
-    .article-header h1 {
-      font-family: 'Roboto Slab', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--color-text, #2b2b2b);
-      margin-bottom: 1.5rem;
-      max-width: none;
-    }
-    .article-header h2 {
-      font-family: 'Roboto Slab', serif;
-      font-size: clamp(1rem, 2.2vw, 1.35rem);
-      font-weight: 300;
-      line-height: 1.5;
-      color: #fd5002;
-      margin-top: 0;
-      margin-bottom: 2.5rem;
-      letter-spacing: 0;
-    }
-    .article-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .article-meta span {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--color-muted, #7a7975);
-    }
-    .article-meta__dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background-color: var(--color-border, #e2ddd8);
-      display: inline-block;
-    }
-
-    /* ── Imagen del artículo ───────────────────────────── */
-    .article-figure {
-      width: 100%;
-      max-width: 900px;
-      margin-inline: auto;
-      padding-inline: 2rem;
-      margin-bottom: 4.5rem;
-    }
-    .article-figure img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
-      border-radius: 2px;
-    }
-    .article-figure figcaption {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      color: var(--color-muted, #7a7975);
-      margin-top: 0.75rem;
-      padding-left: 0.5rem;
-      border-left: 2px solid var(--color-border, #e2ddd8);
-      text-align: left;
-    }
-
-    /* ── Cuerpo del artículo ───────────────────────────── */
-    .article-body {
-      max-width: 680px;
-      margin-inline: auto;
-      padding-inline: 1rem;
-    }
-    .article-body p {
-      font-family: 'Lato', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.95;
-      color: var(--color-text, #2b2b2b);
-      margin-bottom: 1.5rem;
-      max-width: none;
-    }
-    .article-body p:first-of-type::first-letter {
-      font-family: 'Roboto Slab', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 0.85;
-      float: left;
-      margin-right: 0.12em;
-      margin-top: 0.1em;
-      color: #fd5002;
-    }
-
-    /* ── Separador visual ──────────────────────────────── */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-block: 3rem;
-    }
-    .section-divider__line {
-      flex: 1;
-      height: 1px;
-      background-color: var(--color-border, #e2ddd8);
-    }
-    .section-divider__icon {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1rem;
-      color: #fd5002;
-      letter-spacing: 0.2em;
-    }
-
-    /* ── DIV DESTACADO / Blockquote editorial ──────────── */
-    .destacado-editorial {
-      background-color: var(--color-surface, #ffffff);
-      border: 1px solid var(--color-border, #e2ddd8);
-      border-left: 4px solid #fd5002;
-      border-radius: 3px;
-      padding: 2.5rem 2.75rem;
-      margin-block: 3rem;
-      position: relative;
-    }
-    .destacado-editorial::before {
-      content: '\201C';
-      font-family: 'Roboto Slab', serif;
-      font-size: 5rem;
-      font-weight: 700;
-      color: #fd5002;
-      opacity: 0.15;
-      position: absolute;
-      top: -0.5rem;
-      left: 1.5rem;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .destacado-editorial__text {
-      font-family: 'Roboto Slab', serif;
-      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-      font-weight: 400;
-      line-height: 1.55;
-      color: var(--color-text, #2b2b2b);
-      margin-bottom: 1.25rem;
-      max-width: none;
-    }
-    .destacado-editorial__source {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-muted, #7a7975);
-      max-width: none;
-      margin-bottom: 0;
-    }
-
-    /* ── Sub-título dentro del cuerpo ──────────────────── */
-    .article-body h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      color: var(--color-text, #2b2b2b);
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ── Bloque de datos / cifras ───────────────────────── */
-    .data-trio {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-block: 3.5rem;
-      padding-block: 2.5rem;
-      border-top: 1px solid var(--color-border, #e2ddd8);
-      border-bottom: 1px solid var(--color-border, #e2ddd8);
-    }
-    .data-item {
-      text-align: center;
-    }
-    .data-item__num {
-      font-family: 'Roboto Slab', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fd5002;
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .data-item__label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-muted, #7a7975);
-    }
-
-    /* ── Navegación entre páginas ───────────────────────── */
-    .page-nav {
-      border-top: 1px solid var(--color-border, #e2ddd8);
-      margin-top: 5rem;
-      padding-block: 3rem;
-    }
-    .page-nav .container {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 2rem;
-    }
-    .page-nav__prev,
-    .page-nav__next {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      text-decoration: none;
-    }
-    .page-nav__next {
-      text-align: right;
-      align-items: flex-end;
-    }
-    .page-nav__label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-muted, #7a7975);
-      transition: color 220ms ease;
-    }
-    .page-nav__title {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--color-text, #2b2b2b);
-      line-height: 1.3;
-      transition: color 220ms ease, font-style 220ms ease;
-    }
-    .page-nav__prev:hover .page-nav__title,
-    .page-nav__next:hover .page-nav__title {
-      color: #fd5002;
-      font-style: italic;
-    }
-    .page-nav__prev:hover .page-nav__label,
-    .page-nav__next:hover .page-nav__label {
-      color: #fd5002;
-    }
-    .page-nav__center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .page-nav__home {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--color-muted, #7a7975);
-      border: 1px solid var(--color-border, #e2ddd8);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
-      transition: border-color 220ms ease, color 220ms ease, font-style 220ms ease;
-    }
-    .page-nav__home:hover {
-      border-color: #fd5002;
-      color: #fd5002;
-      font-style: italic;
-    }
-
-    /* ── Footer ────────────────────────────────────────── */
-    .site-footer {
-      padding-block: 3rem;
-      border-top: 1px solid var(--color-border, #e2ddd8);
-      background-color: var(--color-surface, #ffffff);
-    }
-    .site-footer .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .site-footer p {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--color-muted, #7a7975);
-      max-width: none;
-      margin-bottom: 0;
-    }
-    .footer-nav {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .footer-nav a {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--color-muted, #7a7975);
-      transition: color 220ms ease, font-style 220ms ease;
-    }
-    .footer-nav a:hover {
-      color: #fd5002;
-      font-style: italic;
-    }
-
-    /* ── Responsive ────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .data-trio {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        text-align: center;
-      }
-      .page-nav .container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-      }
-      .page-nav__center {
-        grid-column: 1 / -1;
-        order: -1;
-      }
-      .article-figure img {
-        height: 300px;
-      }
-      .destacado-editorial {
-        padding: 1.75rem;
-      }
-    }
-    @media (max-width: 600px) {
-      .site-header .container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .site-nav { gap: 1.5rem; }
-      .article-header { padding-block: 3rem 2rem; }
-      .article-figure {
-        padding-inline: 1rem;
-        margin-bottom: 3rem;
-      }
-      .article-figure img { height: 220px; }
-      .page-nav .container {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .page-nav__next { align-items: center; }
-      .site-footer .container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <!-- Tipografía Lato para párrafos -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <!-- ═══════════════════════════════════════════════════
-       HEADER
-  ════════════════════════════════════════════════════ -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="site-brand" aria-label="Agudiseña — inicio">
-        <span class="site-brand__name">Agudiseña</span>
-        <span class="site-brand__dot" aria-hidden="true"></span>
-      </a>
+    <!-- ENCABEZADO DEL SITIO -->
+    <header>
+        <!-- Nombre como título principal -->
+        <h1>Agustina Hernández Correa</h1>
 
-      <nav aria-label="Navegación principal">
-        <ul class="site-nav">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="segundapagina.html" class="active" aria-current="page">Editorial</a></li>
-          <li><a href="tercera.html">Cultura</a></li>
-          <li>
-            <a href="https://agudisena.wordpress.com/" target="_blank" rel="noopener noreferrer">
-              Blog
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+        <!-- Subtítulo con rol profesional -->
+        <p>Diseñadora Gráfica · UPC Córdoba</p>
+    </header>
 
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav>
+        <!-- Enlace de vuelta a la página principal -->
+        <a href="index.html">Inicio</a>
 
-  <!-- ═══════════════════════════════════════════════════
-       BREADCRUMB
-  ════════════════════════════════════════════════════ -->
-  <nav class="breadcrumb" aria-label="Ruta de navegación">
-    <div class="container">
-      <ol>
-        <li><a href="index.html">Inicio</a></li>
-        <li aria-current="page">Editorial</li>
-        <li>Tipografía serif en la era digital</li>
-      </ol>
-    </div>
-  </nav>
+        <!-- Enlace a esta misma página (activo) -->
+        <a href="segundapagina.html">Audiovisual</a>
 
-
-  <!-- ═══════════════════════════════════════════════════
-       ENCABEZADO DEL ARTÍCULO
-  ════════════════════════════════════════════════════ -->
-  <header class="article-header" aria-labelledby="art-title">
-    <span class="article-header__category">Editorial · Tipografía</span>
-
-    <h1 id="art-title">
-      Tipografía serif<br>en la era digital
-    </h1>
-
-    <h2>
-      La revancha silenciosa de las letras con remate
-    </h2>
-
-    <div class="article-meta">
-      <span>Agudiseña</span>
-      <span class="article-meta__dot" aria-hidden="true"></span>
-      <span>Diseño editorial</span>
-      <span class="article-meta__dot" aria-hidden="true"></span>
-      <span>8 min de lectura</span>
-    </div>
-  </header>
-
-
-  <!-- ═══════════════════════════════════════════════════
-       IMAGEN PRINCIPAL
-  ════════════════════════════════════════════════════ -->
-  <figure class="article-figure">
-    <img
-      src="https://images.unsplash.com/photo-1488998427799-e3362cec87c3?w=1200&q=80"
-      alt="Composición tipográfica con letras serif sobre superficie de papel texturado"
-      loading="lazy"
-      width="900"
-      height="480"
-    >
-    <figcaption>Composición tipográfica — fotografía ilustrativa / Unsplash</figcaption>
-  </figure>
-
-
-  <!-- ═══════════════════════════════════════════════════
-       CUERPO DEL ARTÍCULO
-  ════════════════════════════════════════════════════ -->
-  <main id="main-content">
-    <article class="article-body" aria-labelledby="art-title">
-
-      <p>
-        Durante décadas, las tipografías sans-serif dominaron el diseño digital con
-        la lógica de la legibilidad en pantallas de baja resolución. La serif era territorio
-        del papel: los libros, los diarios, los documentos formales. Pero algo cambió.
-        Las pantallas evolucionaron y con ellas la percepción del lector digital.
-      </p>
-
-      <p>
-        Hoy, las tipografías con remate protagonizan los rediseños editoriales más
-        influyentes del mundo. Publicaciones como <em>The New York Times</em>,
-        <em>The Atlantic</em> o <em>El País</em> apuestan por serifs de diseño
-        contemporáneo que combinan tradición y frescura. No es nostalgia: es criterio.
-      </p>
-
-      <div class="section-divider" aria-hidden="true">
-        <span class="section-divider__line"></span>
-        <span class="section-divider__icon">· · ·</span>
-        <span class="section-divider__line"></span>
-      </div>
-
-      <!-- BLOQUE DESTACADO -->
-      <div class="destacado-editorial" role="complementary" aria-label="Cita destacada">
-        <p class="destacado-editorial__text">
-          La tipografía no es el envoltorio del contenido. La tipografía
-          <em>es</em> el contenido. Cada serif, cada interletrado, cada peso
-          habla antes de que el ojo lea una sola palabra.
-        </p>
-        <p class="destacado-editorial__source">— Reflexión editorial · Agudiseña</p>
-      </div>
-
-      <h3>La legibilidad como argumento estético</h3>
-
-      <p>
-        Roboto Slab, la tipografía que encabeza estas páginas, es un ejemplo preciso
-        de esa síntesis. Su estructura geométrica coexiste con terminaciones que
-        evocan la calidez de la letra impresa. Es racional y orgánica al mismo tiempo.
-        Habla de solidez sin rigidez.
-      </p>
-
-      <p>
-        Frente a ella, Lato actúa como contrapunto: ligera, abierta, funcional.
-        La combinación no es accidental. Es un diálogo tipográfico donde cada familia
-        cumple un rol preciso en la jerarquía visual: el título manda, el cuerpo
-        acompaña, la estructura sostiene.
-      </p>
-
-      <!-- DATOS / CIFRAS -->
-      <div class="data-trio" aria-label="Datos sobre tendencias tipográficas">
-        <div class="data-item">
-          <span class="data-item__num">73%</span>
-          <span class="data-item__label">de los grandes medios digitales usan serif en sus titulares</span>
-        </div>
-        <div class="data-item">
-          <span class="data-item__num">2×</span>
-          <span class="data-item__label">mayor tiempo de lectura en composiciones con buena tipografía</span>
-        </div>
-        <div class="data-item">
-          <span class="data-item__num">+40</span>
-          <span class="data-item__label">nuevas familias serif de diseño lanzadas solo en 2024</span>
-        </div>
-      </div>
-
-      <h3>El espacio como elemento tipográfico</h3>
-
-      <p>
-        No existe buena tipografía sin espaciado consciente. El interlineado, el
-        tracking, los márgenes: todo forma parte del sistema. Un texto mal espaciado
-        es como un discurso bien escrito leído a toda velocidad sin pausas. La
-        comprensión se pierde aunque las palabras sean correctas.
-      </p>
-
-      <p>
-        El diseño editorial moderno entiende esto. Por eso el espacio en blanco no
-        es desperdicio: es infraestructura. Es lo que permite que la tipografía
-        respire, que el ojo descanse y que la lectura fluya sin fricción.
-      </p>
-
-    </article>
-
-
-    <!-- ═══════════════════════════════════════════════════
-         NAVEGACIÓN ENTRE PÁGINAS
-    ════════════════════════════════════════════════════ -->
-    <nav class="page-nav" aria-label="Navegación entre artículos">
-      <div class="container">
-
-        <a href="index.html" class="page-nav__prev" aria-label="Ir a la página anterior: Inicio">
-          <span class="page-nav__label">← Anterior</span>
-          <span class="page-nav__title">Inicio — Ideas que dan forma al mundo</span>
-        </a>
-
-        <div class="page-nav__center">
-          <a href="index.html" class="page-nav__home" aria-label="Volver al inicio">
-            Inicio
-          </a>
-        </div>
-
-        <a href="tercera.html" class="page-nav__next" aria-label="Ir al siguiente artículo: Cultura">
-          <span class="page-nav__label">Siguiente →</span>
-          <span class="page-nav__title">Cultura — El color neutro como elección radical</span>
-        </a>
-
-      </div>
+        <!-- Enlace externo al blog personal -->
+        <a href="https://agudisena.wordpress.com/" target="_blank">Blog</a>
     </nav>
 
-  </main>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
 
+        <!-- SECCIÓN: CONTENIDO AUDIOVISUAL -->
+        <section>
 
-  <!-- ═══════════════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════════════ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>© 2025 Agudiseña — Diseño editorial</p>
-      <nav aria-label="Navegación secundaria">
-        <ul class="footer-nav">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="segundapagina.html">Editorial</a></li>
-          <li><a href="tercera.html">Cultura</a></li>
-          <li>
-            <a href="https://agudisena.wordpress.com/" target="_blank" rel="noopener noreferrer">
-              Blog ↗
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
+            <!-- Subtítulo de la sección -->
+            <h2>Referencia audiovisual</h2>
+
+            <!-- Párrafo introductorio al video -->
+            <p>
+                El diseño gráfico como disciplina se nutre constantemente de referencias
+                visuales, conceptuales y culturales. Este video forma parte del material
+                de referencia que exploro en mi proceso de formación.
+            </p>
+
+            <!-- VIDEO DE YOUTUBE EMBEBIDO -->
+            <!-- Envuelto en .video-wrapper para hacerlo responsive en 16:9 -->
+            <div class="video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/BqIWJ12sGcs?si=3Zid_TwcO50ci7KE"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- Atribución del video -->
+            <p class="atribucion">
+                Simbiología | Conversaciones indisciplinadas | Vinciane Despret y Pablo Méndez | Video embebido desde
+                <a href="https://www.youtube.com/watch?v=BqIWJ12sGcs" target="_blank">YouTube</a>.
+                Todos los derechos pertenecen a sus respectivos autores.
+            </p>
+
+            <!-- Bloque destacado con reflexión -->
+            <div class="destacado">
+                <p>
+                    Las referencias visuales y audiovisuales son parte esencial
+                    del proceso proyectual en diseño. Ver, analizar y contextualizar
+                    es también diseñar.
+                </p>
+            </div>
+
+            <!-- ENLACE DE VUELTA A LA PÁGINA PRINCIPAL -->
+            <p>
+                <a href="index.html">← Volver al inicio</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>Agustina Hernández Correa · Laboratorio Digital · UPC 2025</p>
+        <a href="http://parciallaboratoriodigital.github.io/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Parcial Laboratorio Digital</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> ©️ 2026 por </font></font><a href="https://agudisena.wordpress.com/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Agustina Hernández Correa</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> está bajo licencia </font></font><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">CC BY-NC-SA 4.0</font></font></a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+    </footer>
 
 </body>
 </html>
-
